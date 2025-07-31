@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>my simple website</title>
+  <style>
+    body {
+      font-family: sans-serif;
+      background-color: #f4f4f4;
+      text-align: center;
+      margin: 50px;
+    }
+    h1 {
+      color: #333;
+    }
+    p {
+      color: #666;
+    }
+    a {
+      color: #007bff;
+      text-decoration: none;
+    }
+    a:hover {
+      text-decoration: underline;
+    }
+  </style>
+  <script src="https://cdn.jsdelivr.net/gh/red-stone-network/clockwork@latest/tools/clockwork.js"></script>
+</head>
+<body>
+  <h1>store</h1>
+  <p>this is test clockwork app installer.</p>
+  <a href="#" onclick="installApp()">click to install app</a>
+
+  <script>
+    const cw = new Clockwork();
+
+    function installApp() {
+      if (cw.isEmbedded) {
+        cw.installApp("https://example.com/app.json");
+      } else {
+        alert("You aren't using Clockwork!");
+      }
+    }
+  </script>
+</body>
+</html>
