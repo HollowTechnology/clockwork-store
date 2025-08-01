@@ -1,27 +1,51 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <title>install</title>
-  <script src="https://cdn.jsdelivr.net/gh/red-stone-network/clockwork@latest/tools/clockwork.js"></script>
+  <meta charset="UTF-8">
+  <title>Clockwork App Installer</title>
+  <style>
+    body {
+      font-family: sans-serif;
+      background: #1a1a1a;
+      color: white;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      flex-direction: column;
+    }
+
+    button {
+      padding: 10px 20px;
+      font-size: 16px;
+      background-color: #00aaff;
+      color: white;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background-color: #0088cc;
+    }
+  </style>
 </head>
 <body>
-  <button onclick="installApp()">install</button>
+  <h1>Install Project-SPCT-Test</h1>
+  <p>This app can only be installed from inside Clockwork.</p>
+  <button onclick="installApp()">Install App</button>
 
+  <script src="https://cdn.jsdelivr.net/gh/red-stone-network/clockwork@latest/tools/clockwork.js"></script>
   <script>
     const cw = new Clockwork();
 
     function installApp() {
       if (!cw.isEmbedded) {
-        alert("not inside Clockwork");
+        alert("please open this page from inside Clockwork.");
         return;
       }
 
-      cw.installApp("https://cdn.jsdelivr.net/gh/iddu0/iddu0.github.io@main/misc/app.json")
-        .then(() => cw.sendNotification("install success"))
-        .catch(e => {
-          console.error(e);
-          alert("install failed: " + e.message);
-        });
+      cw.installApp("https://cdn.jsdelivr.net/gh/iddu0/iddu0.github.io@main/misc/app.json");
     }
   </script>
 </body>
