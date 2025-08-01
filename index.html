@@ -40,7 +40,7 @@
     const cw = new Clockwork();
 
     function installApp() {
-      if (!cw.isEmbedded) {
+      if (!cw.isInClockwork) {
         alert("please open this page from inside Clockwork.");
         return;
       }
@@ -50,4 +50,5 @@
   </script>
 </body>
 </html>
+
 
