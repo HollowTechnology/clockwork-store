@@ -1,21 +1,32 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>install clockwork app</title>
+  <title>install test</title>
   <script src="https://cdn.jsdelivr.net/gh/red-stone-network/clockwork@latest/tools/clockwork.js"></script>
 </head>
 <body>
-  <h1>install my app</h1>
-  <button onclick="installApp()">install</button>
+  <h1>Install My Clockwork App</h1>
+  <button onclick="installApp()">Install App</button>
 
   <script>
     const cw = new Clockwork();
 
-    function installApp() {
-      if (cw.isEmbedded) {
-        cw.installApp("https://raw.githubusercontent.com/iddu0/iddu0.github.io/refs/heads/main/misc/app.json");
-      } else {
-        alert("you aren't using clockwork!");
+    async function installApp() {
+      if (!cw.isEmbedded) {
+        alert("not running inside Clockwork.");
+        return;
+      }
+
+      const appUrl = "https://raw.githubusercontent.com/iddu0/iddu0.github.io/refs/heads/main/misc/app.json";
+
+      try {
+        console.log("attempting install:", appUrl);
+        await cw.installApp(appUrl);
+        console.log("app install triggered");
+        cw.sendNotification("App install request sent!");
+      } catch (e) {
+        console.error("failed to install:", e);
+        alert("failed to install app: " + e.message);
       }
     }
   </script>
