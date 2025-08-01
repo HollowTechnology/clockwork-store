@@ -41,14 +41,15 @@
 
     function installApp() {
       if (!cw.isInClockwork) {
-        alert("please open this page from inside Clockwork.");
+        cw.installApp("https://raw.githubusercontent.com/iddu0/iddu0.github.io/refs/heads/main/misc/app.json");
         return;
       }
 
-      cw.installApp("https://raw.githubusercontent.com/iddu0/iddu0.github.io/refs/heads/main/misc/app.json");
+      alert("hi")
     }
   </script>
 </body>
 </html>
+
 
 
