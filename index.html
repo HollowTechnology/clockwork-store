@@ -29,14 +29,14 @@
 <body>
   <h1>store</h1>
   <p>this is test clockwork app installer.</p>
-  <button onclick="promptInstallApp('https://raw.githubusercontent.com/iddu0/iddu0.github.io/main/misc/app.json')">install app</button>
+
+  <button onclick="installApp()">install</button>
 
   <script>
     const cw = new Clockwork();
 
     function installApp() {
-        cw.installApp("https://raw.githubusercontent.com/iddu0/iddu0.github.io/main/misc/app.json");
-      }
+      cw.installApp("https://raw.githubusercontent.com/iddu0/iddu0.github.io/main/misc/app.json");
     }
   </script>
 </body>
