@@ -1,51 +1,50 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <title>Clockwork App Installer</title>
-  <style>
-    body {
-      background: #121212;
-      color: white;
-      font-family: Arial, sans-serif;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      height: 100vh;
-      margin: 0;
-    }
-    button {
-      background-color: #00aaff;
-      border: none;
-      border-radius: 6px;
-      color: white;
-      font-size: 18px;
-      padding: 12px 24px;
-      cursor: pointer;
-      transition: background-color 0.3s ease;
-    }
-    button:hover {
-      background-color: #0088cc;
-    }
-  </style>
+<meta charset="UTF-8" />
+<title>Clockwork App Installer</title>
+<style>
+  body {
+    background: #121212;
+    color: white;
+    font-family: Arial, sans-serif;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+  }
+  button {
+    background-color: #00aaff;
+    border: none;
+    border-radius: 6px;
+    color: white;
+    font-size: 18px;
+    padding: 12px 24px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  button:hover {
+    background-color: #0088cc;
+  }
+</style>
 </head>
 <body>
-  <h1>Install Test App</h1>
-  <button onclick="installApp()">Install App</button>
+<h1>Install Test App</h1>
+<button onclick="installApp()">Install App</button>
 
-  <script src="https://cdn.jsdelivr.net/gh/red-stone-network/clockwork@latest/tools/clockwork.js"></script>
-  <script>
-    const cw = new Clockwork();
-
-    function installApp() {
-      if (!cw.isEmbedded) {
-        alert("please open this page inside Clockwork to install the app.");
-        return;
-      }
-
-      cw.installApp("https://raw.githubusercontent.com/iddu0/iddu0.github.io/refs/heads/main/misc/app.json");
+<script src="https://cdn.jsdelivr.net/gh/red-stone-network/clockwork@latest/tools/clockwork.js"></script>
+<script>
+  // use the static property on Clockwork class for better check
+  function installApp() {
+    if (!Clockwork.isInClockwork) {
+      alert("please open this page inside Clockwork to install the app.");
+      return;
     }
-  </script>
+    const cw = new Clockwork();
+    cw.installApp("https://raw.githubusercontent.com/iddu0/iddu0.github.io/refs/heads/main/misc/app.json");
+  }
+</script>
 </body>
 </html>
