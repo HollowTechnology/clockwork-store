@@ -29,22 +29,37 @@
     background-color: #0088cc;
   }
 </style>
+<!-- defer loads the script without blocking and guarantees execution order -->
+<script defer src="https://cdn.jsdelivr.net/gh/red-stone-network/clockwork@latest/tools/clockwork.js"></script>
 </head>
 <body>
 <h1>Install Test App</h1>
-<button onclick="installApp()">Install App</button>
+<button id="installBtn" disabled>Loading...</button>
 
-<script src="https://cdn.jsdelivr.net/gh/red-stone-network/clockwork@latest/tools/clockwork.js"></script>
 <script>
-  // use the static property on Clockwork class for better check
-  function installApp() {
-    if (!Clockwork.isInClockwork) {
-      alert("please open this page inside Clockwork to install the app.");
+  // wait for the whole page and scripts to load before enabling button
+  window.addEventListener('load', () => {
+    const btn = document.getElementById('installBtn');
+
+    // check if Clockwork is loaded and usable
+    if (typeof Clockwork === 'undefined') {
+      btn.textContent = 'Clockwork lib not loaded';
+      btn.disabled = true;
       return;
     }
-    const cw = new Clockwork();
-    cw.installApp("https://raw.githubusercontent.com/iddu0/iddu0.github.io/refs/heads/main/misc/app.json");
-  }
+
+    btn.textContent = 'Install App';
+    btn.disabled = false;
+
+    btn.onclick = () => {
+      if (!Clockwork.isInClockwork) {
+        alert('please open this page inside Clockwork to install the app.');
+        return;
+      }
+      const cw = new Clockwork();
+      cw.installApp("https://raw.githubusercontent.com/iddu0/iddu0.github.io/refs/heads/main/misc/app.json");
+    };
+  });
 </script>
 </body>
 </html>
