@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>Install App via Clockwork</title>
+  <title>appinst</title>
   <style>
     body {
       background-color: #1e1e1e;
@@ -27,14 +27,14 @@
   </style>
 </head>
 <body>
-  <h1>Install My App</h1>
-  <button id="installBtn">Install</button>
+  <h1>install app</h1>
+  <button id="button">Install</button>
 
   <script src="https://cdn.jsdelivr.net/gh/red-stone-network/clockwork@latest/tools/clockwork.js"></script>
   <script>
     const cw = new Clockwork();
 
-    document.getElementById("installBtn").onclick = () => {
+    document.getElementById("button").onclick = () => {
       if (cw.isEmbedded) {
         cw.installApp("https://raw.githubusercontent.com/iddu0/iddu0.github.io/refs/heads/main/misc/app.json");
       } else {
@@ -44,3 +44,4 @@
   </script>
 </body>
 </html>
+
