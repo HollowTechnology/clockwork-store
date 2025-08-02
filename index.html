@@ -1,66 +1,49 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8" />
-<title>Clockwork App Installer</title>
-<style>
-  body {
-    background: #121212;
-    color: white;
-    font-family: Arial, sans-serif;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    margin: 0;
-  }
-  button {
-    background-color: #00aaff;
-    border: none;
-    border-radius: 6px;
-    color: white;
-    font-size: 18px;
-    padding: 12px 24px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-  }
-  button:hover {
-    background-color: #0088cc;
-  }
-</style>
-<!-- defer loads the script without blocking and guarantees execution order -->
-<script defer src="https://cdn.jsdelivr.net/gh/red-stone-network/clockwork@latest/tools/clockwork.js"></script>
+  <meta charset="UTF-8" />
+  <title>Clockwork App Installer</title>
+  <style>
+    body {
+      background: #121212;
+      color: #fff;
+      font-family: sans-serif;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      margin: 0;
+    }
+    button {
+      padding: 12px 24px;
+      font-size: 16px;
+      background: #00aaff;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+    button:hover {
+      background: #0088cc;
+    }
+  </style>
 </head>
 <body>
-<script src="https://raw.githubusercontent.com/red-stone-network/clockwork/latest/tools/clockwork.js"></script>
-<h1>Install Test App</h1>
-<button id="installBtn" disabled>Loading...</button>
+  <h1>Install Test App</h1>
+  <button onclick="install()">Install App</button>
 
-<script>
-  // wait for the whole page and scripts to load before enabling button
-  window.addEventListener('load', () => {
-    const btn = document.getElementById('installBtn');
+  <script>
+    function install() {
+      const scriptUrl = "https://raw.githubusercontent.com/iddu0/iddu0.github.io/refs/heads/main/misc/app.json";
 
-    // check if Clockwork is loaded and usable
-    if (typeof Clockwork === 'undefined') {
-      btn.textContent = 'Clockwork lib not loaded';
-      btn.disabled = true;
-      return;
-    }
-
-    btn.textContent = 'Install App';
-    btn.disabled = false;
-
-    btn.onclick = () => {
-      if (!Clockwork.isInClockwork) {
-        alert('please open this page inside Clockwork to install the app.');
+      if (window === window.parent) {
+        alert("this page must be opened inside Clockwork!");
         return;
       }
-      const cw = new Clockwork();
-      cw.installApp("https://raw.githubusercontent.com/iddu0/iddu0.github.io/refs/heads/main/misc/app.json");
-    };
-  });
-</script>
+
+      window.parent.postMessage(["install app", scriptUrl], "*");
+    }
+  </script>
 </body>
 </html>
