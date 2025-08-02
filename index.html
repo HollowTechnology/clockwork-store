@@ -35,16 +35,21 @@
   <p>click button to install.</p>
   <button onclick="installApp()">Install App</button>
 
+  <!-- clockwork sdk -->
   <script src="https://cdn.jsdelivr.net/gh/red-stone-network/clockwork@latest/tools/clockwork.js"></script>
   <script>
     const cw = new Clockwork();
     const appUrl = "https://raw.githubusercontent.com/iddu0/iddu0.github.io/main/misc/app.json";
 
+    console.log("cw.isInClockwork =", cw.isInClockwork);
+    console.log("cw.isEmbedded =", cw.isEmbedded);
+
     function installApp() {
-      if (cw.isInClockwork) {
+      try {
         cw.installApp(appUrl);
-      } else {
-        alert("please open this page inside Clockwork to install the app.");
+      } catch (err) {
+        console.error("Install failed:", err);
+        alert("you must open this page from inside Clockwork to install this app.");
       }
     }
   </script>
