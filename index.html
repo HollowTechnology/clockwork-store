@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Clockwork App Installer</title>
+  <title>testappinstall</title>
   <style>
     body {
       font-family: sans-serif;
@@ -31,8 +31,8 @@
   </style>
 </head>
 <body>
-  <h1>Install Project-SPCT-Test</h1>
-  <p>This app can only be installed from inside Clockwork.</p>
+  <h1>install test app</h1>
+  <p>click button to install.</p>
   <button onclick="installApp()">Install App</button>
 
   <script src="https://cdn.jsdelivr.net/gh/red-stone-network/clockwork@latest/tools/clockwork.js"></script>
@@ -41,16 +41,15 @@
 
     function installApp() {
       if (!cw.isInClockwork) {
-        cw.sendNotification(prompt("Type a message."));
+        alert("please open this page from inside Clockwork.");
         return;
       }
 
-      alert("hi")
+      cw.installApp("https://raw.githubusercontent.com/iddu0/iddu0.github.io/refs/heads/main/misc/app.json");
     }
   </script>
 </body>
 </html>
-
 
 
 
