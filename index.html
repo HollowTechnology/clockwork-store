@@ -1,56 +1,50 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>testappinstall</title>
+  <meta charset="UTF-8" />
+  <title>Clockwork App Installer</title>
   <style>
     body {
-      font-family: sans-serif;
-      background: #1a1a1a;
+      background: #121212;
       color: white;
+      font-family: Arial, sans-serif;
       display: flex;
-      align-items: center;
-      justify-content: center;
-      height: 100vh;
       flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
     }
-
     button {
-      padding: 10px 20px;
-      font-size: 16px;
       background-color: #00aaff;
-      color: white;
       border: none;
       border-radius: 6px;
+      color: white;
+      font-size: 18px;
+      padding: 12px 24px;
       cursor: pointer;
+      transition: background-color 0.3s ease;
     }
-
     button:hover {
       background-color: #0088cc;
     }
   </style>
 </head>
 <body>
-  <h1>install test app</h1>
-  <p>click button to install.</p>
+  <h1>Install Test App</h1>
   <button onclick="installApp()">Install App</button>
 
-  <!-- clockwork sdk -->
   <script src="https://cdn.jsdelivr.net/gh/red-stone-network/clockwork@latest/tools/clockwork.js"></script>
   <script>
     const cw = new Clockwork();
-    const appUrl = "https://raw.githubusercontent.com/iddu0/iddu0.github.io/main/misc/app.json";
-
-    console.log("cw.isInClockwork =", cw.isInClockwork);
-    console.log("cw.isEmbedded =", cw.isEmbedded);
 
     function installApp() {
-      try {
-        cw.installApp(appUrl);
-      } catch (err) {
-        console.error("Install failed:", err);
-        alert("you must open this page from inside Clockwork to install this app.");
+      if (!cw.isEmbedded) {
+        alert("please open this page inside Clockwork to install the app.");
+        return;
       }
+
+      cw.installApp("https://raw.githubusercontent.com/iddu0/iddu0.github.io/refs/heads/main/misc/app.json");
     }
   </script>
 </body>
