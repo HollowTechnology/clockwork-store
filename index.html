@@ -2,50 +2,45 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>Clockwork App Installer</title>
+  <title>Install App via Clockwork</title>
   <style>
     body {
-      background: #121212;
-      color: #fff;
+      background-color: #1e1e1e;
+      color: white;
       font-family: sans-serif;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      height: 100vh;
-      margin: 0;
+      text-align: center;
+      padding-top: 50px;
     }
     button {
+      background-color: #00aaff;
+      color: white;
+      border: none;
       padding: 12px 24px;
       font-size: 16px;
-      background: #00aaff;
-      border: none;
       border-radius: 6px;
       cursor: pointer;
       transition: background 0.2s;
     }
     button:hover {
-      background: #0088cc;
+      background-color: #0088cc;
     }
   </style>
 </head>
 <body>
-  <h1>Install Test App</h1>
+  <h1>Install My App</h1>
+  <button id="installBtn">Install</button>
+
   <script src="https://cdn.jsdelivr.net/gh/red-stone-network/clockwork@latest/tools/clockwork.js"></script>
-  <button onclick="install()">Install App</button>
-
   <script>
-    function install() {
-      const scriptUrl = "https://raw.githubusercontent.com/iddu0/iddu0.github.io/refs/heads/main/misc/app.json";
+    const cw = new Clockwork();
 
-      if (window === window.parent) {
-        alert("this page must be opened inside Clockwork!");
-        return;
+    document.getElementById("installBtn").onclick = () => {
+      if (cw.isEmbedded) {
+        cw.installApp("https://raw.githubusercontent.com/iddu0/iddu0.github.io/refs/heads/main/misc/app.json");
+      } else {
+        alert("you aren't using Clockwork!");
       }
-
-      window.parent.postMessage(["install app", scriptUrl], "*");
-    }
+    };
   </script>
 </body>
 </html>
-
