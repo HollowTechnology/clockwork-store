@@ -38,15 +38,13 @@
   <script src="https://cdn.jsdelivr.net/gh/red-stone-network/clockwork@latest/tools/clockwork.js"></script>
   <script>
     const cw = new Clockwork();
+    const appUrl = "https://raw.githubusercontent.com/iddu0/iddu0.github.io/refs/heads/main/misc/app.json";
 
     function installApp() {
-      const url = "https://raw.githubusercontent.com/iddu0/iddu0.github.io/refs/heads/main/misc/app.json";
-
-      if (typeof Clockwork !== "undefined" && cw.isInClockwork) {
-        cw.installApp(url);
+      if (cw.isEmbedded) {
+        cw.installApp(appUrl);
       } else {
-        // fallback if running outside of Clockwork
-        promptInstallApp(url);
+        alert("please open this page inside Clockwork to install the app.");
       }
     }
   </script>
